@@ -16,6 +16,10 @@
     min-height: 56px;
     display: flex;
     align-items: center;
+
+    img {
+        height: 100%;
+    }
 }
 
 .menu-items {
@@ -46,8 +50,7 @@
 }
 
 .router-container {
-    padding-left: 56px;
-    padding-top: 16px;
+    padding: 16px 56px;
 }
 
 mat-toolbar, mat-toolbar-row {
