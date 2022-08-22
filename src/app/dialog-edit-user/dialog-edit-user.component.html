@@ -28,8 +28,8 @@
             <div>
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Birth date</mat-label>
-                    <input [disabled]="loading" matInput [matDatepicker]="picker" autocomplete="off"
-                        placeholder="MM/DD/YYYY" [(ngModel)]="birthDate" name="birthDate" required>
+                    <input [disabled]="loading" matInput [matDatepicker]="picker" [(ngModel)]="birthDate"
+                        autocomplete="off" placeholder="MM/DD/YYYY" name="birthDate" required>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>

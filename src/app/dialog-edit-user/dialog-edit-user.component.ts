@@ -12,12 +12,12 @@ export class DialogEditUserComponent implements OnInit {
   user: User = new User();
   userId: string = '';
   loading: boolean = false;
-  birthDate: Date = new Date();
+  birthDate: any;
 
   constructor(private firestore: AngularFirestore, public dialogRef: MatDialogRef<DialogEditUserComponent>) { }
 
   ngOnInit(): void {
-     
+    this.birthDate = new Date(this.user.birthDate);
   }
 
   saveUser() {
@@ -25,10 +25,10 @@ export class DialogEditUserComponent implements OnInit {
     console.log(this.user);
     this.loading = true;
     this.firestore.collection('users').doc(this.userId)
-    .update(this.user.toJSON())
-    .then(() => {
-      this.loading = false;
-      this.dialogRef.close();
-    });
+      .update(this.user.toJSON())
+      .then(() => {
+        this.loading = false;
+        this.dialogRef.close();
+      });
   }
 }

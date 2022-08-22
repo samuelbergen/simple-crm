@@ -18,10 +18,12 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
@@ -29,11 +31,24 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import firebase from 'firebase/compat/app';
 import { DialogEditAddressComponent } from './dialog-edit-address/dialog-edit-address.component';
 import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
+import { DialogDeleteUserComponent } from './dialog-delete-user/dialog-delete-user.component';
+import { ChatComponent } from './chat/chat.component';
+import { SalesComponent } from './sales/sales.component';
+import { TicketsComponent } from './tickets/tickets.component';
+import { HelpSectionComponent } from './help-section/help-section.component';
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthGuardService } from './auth-guard.service';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { HttpClientModule } from '@angular/common/http'; 
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
-
+firebase.initializeApp(environment.firebase);
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +57,15 @@ import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.com
     DialogAddUserComponent,
     UserDetailComponent,
     DialogEditAddressComponent,
-    DialogEditUserComponent
+    DialogEditUserComponent,
+    DialogDeleteUserComponent,
+    ChatComponent,
+    SalesComponent,
+    TicketsComponent,
+    HelpSectionComponent,
+    LoginComponent,
+    ProfileComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -62,15 +85,23 @@ import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.com
     MatTableModule,
     MatMenuModule,
     MatNativeDateModule,
+    MatTabsModule,
+    MatSnackBarModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    HttpClientModule,
+    AngularFireStorageModule
   ],
-  providers: [],
+  providers: [
+    AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

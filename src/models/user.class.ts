@@ -1,5 +1,3 @@
-import { Timestamp } from "firebase/firestore";
-
 export class User {
     firstName: string;
     lastName: string;
@@ -8,6 +6,7 @@ export class User {
     street: string;
     zipCode: number;
     city: string;
+    
 
     constructor(obj?: any) {
         this.firstName = obj ? obj.firstName : '';

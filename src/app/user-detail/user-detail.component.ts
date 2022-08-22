@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/models/user.class';
+import { DialogDeleteUserComponent } from '../dialog-delete-user/dialog-delete-user.component';
 import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 
@@ -45,6 +46,11 @@ export class UserDetailComponent implements OnInit {
   editAddressMenu() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
     dialog.componentInstance.user = new User(this.user.toJSON());
+    dialog.componentInstance.userId = this.userId;
+  }
+
+  deleteUser() {
+    const dialog = this.dialog.open(DialogDeleteUserComponent);
     dialog.componentInstance.userId = this.userId;
   }
 
